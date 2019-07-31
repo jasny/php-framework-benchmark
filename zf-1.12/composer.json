@@ -1,6 +1,0 @@
-{
-    "name": "zf1/helloworld",
-    "require": {
-        "zendframework/zendframework1": "1.*"
-    }
-}

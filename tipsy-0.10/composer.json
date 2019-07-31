@@ -1,7 +1,0 @@
-{
-	"name": "arzynik/tipsy-example",
-	"description": "Tipsy Example",
-	"require": {
-		"arzynik/tipsy": "0.10.*"
-	}
-}

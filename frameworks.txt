@@ -1,0 +1,15 @@
+cake:3.*
+codeigniter:3.*
+fatfree:3.*
+ice:1.*
+laravel:5.*
+lumen:5.*
+no-framework:without-composer
+no-framework:with-composer
+phalcon:3.*
+slim:3.*
+symfony:3.*
+symfony:4.*
+yii:2.*
+zend-expressive:3.*
+zend-framework:3.*

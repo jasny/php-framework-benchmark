@@ -1,0 +1,3 @@
+index:
+  path: /hello
+  controller: App\Controller\HelloController::index

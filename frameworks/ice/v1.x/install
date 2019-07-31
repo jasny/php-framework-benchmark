@@ -1,0 +1,11 @@
+#!/bin/bash
+
+PHP7=`php -r "echo version_compare(PHP_VERSION, '7.0.0', '>=');"`
+
+if [[ "$PHP7" ]]; then
+    cd build/php7
+else
+    cd build/php5
+fi
+
+source ./install

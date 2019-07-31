@@ -1,2 +1,0 @@
-# Project
-PHPixie skeleton project
