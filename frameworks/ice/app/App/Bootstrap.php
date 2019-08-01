@@ -14,12 +14,16 @@ $di->loader
 $di->dispatcher
     ->setNamespace(__NAMESPACE__);
 
-$di->router
-    ->setRoutes([
-        ['GET', '/{controller:[a-z]+}/{action:[a-z]+[/]?}'],
-        ['GET', '/{controller:[a-z]+[/]?}'],
+// Set routes
+$di->set('router', function () {
+    $router = new \Ice\Mvc\Router();
+    $router->setRoutes([
+        ['GET', '/{controller}'],
         ['GET', ''],
     ]);
+
+    return $router;
+});
 
 $di->view
     ->setViewsDir(__DIR__ . '/View/');

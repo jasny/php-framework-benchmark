@@ -17,4 +17,5 @@ fi
 ${phpize_bin} --silent
 
 ./configure --silent --enable-ice
-make -s && make -s install
+make -s
+make install

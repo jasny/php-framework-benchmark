@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Controller;
+use Phalcon\Mvc\Controller;
 
-class HelloController extends IndexController
+class HelloController extends Controller
 {
-
     public function indexAction()
     {
         return $this->response->setContent('Hello World!');
