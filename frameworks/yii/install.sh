@@ -13,6 +13,7 @@ composer global require "fxp/composer-asset-plugin:1.*"
 composer create-project --no-interaction --prefer-dist --no-dev yiisoft/yii2-app-basic "$DIR" "$VERSION"
 
 cp HelloController.php "$DIR/controllers/"
+cp .htaccess "$DIR/web/"
 
 composer update --no-interaction --working-dir="$DIR"
 composer dump-autoload --no-interaction --optimize --classmap-authoritative --no-dev --working-dir="$DIR"
