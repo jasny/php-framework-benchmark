@@ -1,19 +1,37 @@
 #!/bin/sh
 
-base="http://127.0.0.1/php-framework-benchmark"
-
-cd `dirname $0`
+URL="http://127.0.0.1:8081/hello"
 
 if [ $# -eq 0 ]; then
-    # include framework list
-    . ./list.sh
-    export targets="$list"
+    export TARGETS=`cat frameworks.txt`
 else
-    export targets="${@%/}"
+    export TARGETS="${@%/}"
 fi
 
-cd benchmarks
+output_dir="output/$VARIANT"
+results_file="$output_dir/results.log"
+check_file="$output_dir/check.log"
+error_file="$output_dir/error.log"
 
-sh hello_world.sh "$base"
+mkdir -p "$output_dir" "$output_dir/frameworks"
+rm -f "$results_file" "$check_file" "$error_file" "$output_dir"/frameworks/*
+touch "$error_file"
 
-php ../bin/show_results_table.php
+source libs/benchmark_function.sh
+
+for TARGET in $TARGETS; do
+    FRAMEWORK="${TARGET%:*}"
+
+    [ -d "frameworks/$FRAMEWORK" ] || continue
+
+    echo -n "$TARGET "
+    source serve.sh start "$TARGET" > /dev/null
+    benchmark "$TARGET" "$URL"
+    test $? -eq 0 && echo "done" || echo "failed"
+    source serve.sh stop "$TARGET" > /dev/null
+done
+
+cat "$error_file"
+
+php libs/show_results_table.php
+

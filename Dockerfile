@@ -1,0 +1,12 @@
+FROM php:7-apache
+
+RUN a2enmod rewrite
+RUN sed -ri -e "s/KeepAlive On/KeepAlive Off/g" /etc/apache2/apache2.conf
+
+RUN mkdir -p /var/www/libs/
+COPY libs/output_data.php /var/www/libs/
+RUN echo 'auto_append_file="/var/www/libs/output_data.php"' > /usr/local/etc/php/conf.d/output_data.ini
+
+COPY libs/setdocroot.sh /usr/local/bin/setdocroot
+RUN chmod +x /usr/local/bin/setdocroot
+

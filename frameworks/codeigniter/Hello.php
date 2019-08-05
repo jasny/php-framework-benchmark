@@ -4,6 +4,6 @@ class Hello extends CI_Controller
 {
     public function index()
     {
-        echo 'Hello World!';
+        $this->output->set_output('Hello World!');
     }
 }

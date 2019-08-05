@@ -11,6 +11,9 @@ else
     FRAMEWORKS="${@%/}"
 fi
 
+docker build -t php-framework-benchmark .
+echo
+
 for FRAMEWORK in $FRAMEWORKS; do
   test -d "frameworks/$FRAMEWORK" || continue
 

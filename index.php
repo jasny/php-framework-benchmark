@@ -1,39 +1,37 @@
 <?php
 
-Parse_Results: {
-    require __DIR__ . '/libs/parse_results.php';
-    $results = parse_results(__DIR__ . '/output/results.hello_world.log');
+// Parse_Results
+require __DIR__ . '/libs/parse_results.php';
+$results = parse_results(__DIR__ . '/output/results.log');
+
+// Load Theme
+$theme = isset($_GET['theme']) ? $_GET['theme'] : 'default';
+if (! ctype_alnum($theme)) {
+    exit('Invalid theme');
 }
 
-Load_Theme: {
-    $theme = isset($_GET['theme']) ? $_GET['theme'] : 'default';
-    if (! ctype_alnum($theme)) {
-        exit('Invalid theme');
-    }
-
-    if ($theme === 'default') {
-        require __DIR__ . '/libs/make_graph.php';
+if ($theme === 'default') {
+    require __DIR__ . '/libs/make_graph.php';
+} else {
+    $file = __DIR__ . '/libs/' . $theme . '/make_graph.php';
+    if (is_readable($file)) {
+        require $file;
     } else {
-        $file = __DIR__ . '/libs/' . $theme . '/make_graph.php';
-        if (is_readable($file)) {
-            require $file;
-        } else {
-            require __DIR__ . '/libs/make_graph.php';
-        }
+        require __DIR__ . '/libs/make_graph.php';
     }
 }
 
 // RPS Benchmark
-list($chart_rpm, $div_rpm) = make_graph('rps', 'Throughput', 'requests per second');
+list($chart_rpm, $div_rpm) = make_graph($results, 'rps', 'Throughput', 'requests per second');
 
 // Memory Benchmark
-list($chart_mem, $div_mem) = make_graph('memory', 'Memory', 'peak memory (MB)');
+list($chart_mem, $div_mem) = make_graph($results, 'memory', 'Memory', 'peak memory (MB)');
 
 // Exec Time Benchmark
-list($chart_time, $div_time) = make_graph('time', 'Exec Time', 'ms');
+list($chart_time, $div_time) = make_graph($results, 'time', 'Exec Time', 'ms');
 
 // Included Files
-list($chart_file, $div_file) = make_graph('file', 'Included Files', 'count');
+list($chart_file, $div_file) = make_graph($results, 'file', 'Included Files', 'count');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,25 +53,6 @@ echo $chart_rpm, $chart_mem, $chart_time, $chart_file;
 echo $div_rpm, $div_mem, $div_time, $div_file;
 ?>
 </div>
-
-<ul>
-<?php
-$url_file = __DIR__ . '/output/urls.log';
-if (file_exists($url_file)) {
-    $urls = file($url_file);
-    foreach ($urls as $url) {
-        $parts = parse_url(trim($url));
-        $url = $parts['scheme'] . '://' . $_SERVER['HTTP_HOST'] . $parts['path'];
-        if ($parts['query']) {
-            $url .= '?' . $parts['query'];
-        }
-        echo '<li><a href="' . htmlspecialchars($url, ENT_QUOTES, 'UTF-8') .
-             '">' . htmlspecialchars($url, ENT_QUOTES, 'UTF-8') .
-             '</a></li>' . "\n";
-    }
-}
-?>
-</ul>
 
 <hr>
 

@@ -2,10 +2,8 @@
 
 require __DIR__ . '/php-recipe-2nd/make_chart_parts.php';
 
-function make_graph($id, $title, $hAxis_title)
+function make_graph($results, $id, $title, $hAxis_title)
 {
-    global $results;
-
     $barColors = array(
         'DarkBlue', 'DarkCyan', 'DarkGoldenRod', 'DarkGray', 'DarkGreen',
         'DarkKhaki', 'DarkMagenta', 'DarkOliveGreen', 'DarkOrange', 'DarkOrchid',
@@ -22,9 +20,8 @@ function make_graph($id, $title, $hAxis_title)
 
     $colors = $barColors;
     foreach ($results as $fw => $result) {
-        $data[] = array($fw, $result[$id], array_shift($colors));
+        $data[] = array($fw, $result[$id] !== INF ? $result[$id] : 0, array_shift($colors));
     }
-    //var_dump($data); exit;
 
     $options = array(
       'title'  => $title,

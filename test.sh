@@ -1,5 +1,7 @@
 #!/bin/sh
 
+URL="http://localhost:8081/hello"
+
 if [ ! `which curl` ]; then
     echo "curl command not found."
     exit 1;
@@ -13,8 +15,7 @@ fi
 
 for TARGET in $TARGETS; do
     echo -n "$TARGET "
-    source bin/serve.sh start "$TARGET" > /dev/null
-    sleep 0.2
+    source serve.sh start "$TARGET" > /dev/null
     RESULT=`curl --fail --silent http://localhost:8081/hello`
 
     if [ "$RESULT" == "Hello World!" ] ; then
@@ -25,11 +26,10 @@ for TARGET in $TARGETS; do
         set -- $TARGETS
         if [ $# -eq 1 ]; then
             echo
-            curl -sSi http://localhost:8081/hello
+            curl -sSi "$URL"
         fi
     fi
 
-    source bin/serve.sh stop "$TARGET" > /dev/null
-    sleep 0.2
+    source serve.sh stop "$TARGET" > /dev/null
 done
 
