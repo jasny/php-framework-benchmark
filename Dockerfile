@@ -8,5 +8,6 @@ COPY libs/output_data.php /var/www/libs/
 RUN echo 'auto_append_file="/var/www/libs/output_data.php"' > /usr/local/etc/php/conf.d/output_data.ini
 
 COPY libs/setdocroot.sh /usr/local/bin/setdocroot
-RUN chmod +x /usr/local/bin/setdocroot
+COPY libs/composer.phar /usr/local/bin/composer
+RUN chmod +x /usr/local/bin/setdocroot /usr/local/bin/composer
 

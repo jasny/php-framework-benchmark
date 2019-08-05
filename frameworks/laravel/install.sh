@@ -13,8 +13,10 @@ composer update --no-interaction --no-dev --working-dir="$DIR"
 
 cp .env.prod "$DIR/.env"
 cp HelloController.php "$DIR/app/Http/Controllers/"
-cp routes.php "$DIR/routes/web.php"
-chmod ugo+rwX "$DIR/storage" -R
 
-composer dump-autoload --no-interaction --optimize --classmap-authoritative --no-dev --working-dir="$DIR"
+cp routes.php "$DIR/routes/web.php"
+echo '<?php' > "$DIR/routes/api.php"
+echo '<?php' > "$DIR/routes/console.php"
+
+chmod ugo+rwX "$DIR/storage" -R
 

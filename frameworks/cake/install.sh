@@ -12,5 +12,5 @@ composer create-project --no-interaction --prefer-dist cakephp/app "$DIR" "$VERS
 cp HelloController.php "$DIR/src/Controller/"
 
 composer update --no-interaction --working-dir="$DIR"
-composer dump-autoload --no-interaction --optimize --classmap-authoritative --no-dev --working-dir="$DIR"
+
 
