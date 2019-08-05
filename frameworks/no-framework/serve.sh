@@ -11,3 +11,7 @@ fi
 
 docker run -d -p "$PORT":80 --name "$NAME" -v "$PWD/$VERSION":/var/www/app php-framework-benchmark.no-framework
 
+if test -f "$VERSION/composer.json"; then
+  docker exec -w /var/www/app "$NAME" composer install --no-dev --no-interaction --optimize-autoloader --classmap-authoritative 2>&1
+fi
+

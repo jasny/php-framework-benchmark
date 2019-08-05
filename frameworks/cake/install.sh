@@ -13,4 +13,3 @@ cp HelloController.php "$DIR/src/Controller/"
 
 composer update --no-interaction --working-dir="$DIR"
 
-

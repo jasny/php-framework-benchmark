@@ -12,5 +12,4 @@ composer create-project --no-interaction --prefer-dist --no-dev bcosca/fatfree "
 cp index.php "$DIR"
 
 composer update --no-interaction --working-dir="$DIR"
-composer dump-autoload --no-interaction --optimize --classmap-authoritative --no-dev --working-dir="$DIR"
 

@@ -14,6 +14,4 @@ cp Hello.php "$DIR/application/controllers/"
 rm -rf "$DIR/user_guide"
 
 composer update --no-interaction --working-dir="$DIR"
-composer dump-autoload --no-interaction --optimize --classmap-authoritative --no-dev --working-dir="$DIR"
-
 

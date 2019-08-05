@@ -14,5 +14,4 @@ cp routes.php "$DIR/routes/web.php"
 chmod ugo+rwX "$DIR/storage/" -R
 
 composer update --no-interaction --working-dir="$DIR"
-composer dump-autoload --no-interaction --optimize --classmap-authoritative --no-dev --working-dir="$DIR"
 

@@ -11,3 +11,7 @@ fi
 
 docker run -d -p "$PORT":80 --name "$NAME" -v "$PWD/$VERSION":/var/www/app php-framework-benchmark.symfony
 
+docker exec -w /var/www/app "$NAME" composer install --no-dev --no-interaction --optimize-autoloader --classmap-authoritative 2>&1
+docker exec -w /var/www/app "$NAME" php bin/console cache:clear --env=prod --no-debug
+docker exec -w /var/www/app "$NAME" php bin/console cache:warmup --env=prod --no-debug
+

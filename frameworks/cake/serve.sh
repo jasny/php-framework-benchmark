@@ -11,5 +11,6 @@ fi
 
 docker run -d -p "$PORT":80 --name "$NAME" -v "$PWD/$VERSION":/var/www/app php-framework-benchmark.cake
 
-docker exec "$NAME" -w /var/www/app composer install --no-dev --no-interaction --optimize --classmap-authoritative
+docker exec -w /var/www/app "$NAME" composer install --no-dev --no-interaction --optimize-autoloader --classmap-authoritative 2>&1
+
 

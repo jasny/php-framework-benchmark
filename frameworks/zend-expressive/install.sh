@@ -16,7 +16,6 @@ composer require --no-interaction zfcampus/zf-development-mode
 composer development-disable 
 
 mkdir -p templates/app templates/error templates/layout
-
 composer expressive handler:create -- "App\Handler\HelloHandler"
 popd
 
@@ -24,5 +23,4 @@ cp routes.php "$DIR/config/"
 cp HelloHandler.php "$DIR/src/App/Handler/"
 
 composer update --no-interaction --working-dir="$DIR"
-composer dump-autoload --no-interaction --optimize --classmap-authoritative --no-dev --working-dir="$DIR"
 

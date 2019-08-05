@@ -11,6 +11,8 @@ fi
 
 docker run -d -p "$PORT":80 --name "$NAME" -v "$PWD/$VERSION":/var/www/app php-framework-benchmark.laravel
 
-docker exec "$NAME" -w /var/www/app composer install --no-dev --no-interaction --optimize --classmap-authoritative
-docker exec "$NAME" -w /var/www/app 'php artisan route:cache; php artisan config:cache; php artisan optimize'
+docker exec -w /var/www/app "$NAME" composer install --no-dev --no-interaction --optimize-autoloader --classmap-authoritative 2>&1
+docker exec -w /var/www/app "$NAME" php artisan route:cache 2>&1
+docker exec -w /var/www/app "$NAME" php artisan config:cache 2>&1
+docker exec -w /var/www/app "$NAME" php artisan optimize 2>&1
 

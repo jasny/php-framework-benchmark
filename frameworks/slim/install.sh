@@ -13,5 +13,4 @@ cp routes.php "$DIR/src/"
 chmod ugo+rwX "$DIR/logs/"
 
 composer update --no-interaction --no-dev --working-dir="$DIR"
-composer dump-autoload --no-interaction --optimize --classmap-authoritative --no-dev --working-dir="$DIR"
 

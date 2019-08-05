@@ -14,13 +14,5 @@ cp HelloController.php "$DIR/module/Application/src/Controller/"
 
 chmod ugo+rwX "$DIR/data" -R
 
-pushd "$DIR"
-composer update --no-interaction
-
-php artisan optimize --force
-php artisan config:cache
-php artisan route:cache
-
-composer dump-autoload --no-interaction --optimize --classmap-authoritative --no-dev
-popd
+composer update --no-interaction --working-dir="$DIR"
 
