@@ -1,0 +1,12 @@
+{
+    "require": {
+        "relay/relay": "^2.0",
+        "jasny/switch-route": "dev-master"
+    },
+    "autoload": {
+      "psr-4": {
+        "App\\": "",
+        "App\\Generated\\": "generated"
+      }
+    }
+}

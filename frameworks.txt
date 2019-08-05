@@ -13,3 +13,4 @@ symfony:4.*
 yii:2.*
 zend-expressive:3.*
 zend-framework:3.*
+jasny:latest
