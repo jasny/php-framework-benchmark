@@ -12,7 +12,4 @@ composer create-project --no-interaction --prefer-dist --no-dev --no-scripts zen
 cp module.config.php "$DIR/module/Application/config/"
 cp HelloController.php "$DIR/module/Application/src/Controller/"
 
-chmod ugo+rwX "$DIR/data" -R
-
 composer update --no-interaction --working-dir="$DIR"
-

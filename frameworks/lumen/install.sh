@@ -11,7 +11,5 @@ composer create-project --no-interaction --prefer-dist --no-dev laravel/lumen "$
 
 cp .env.prod "$DIR/.env"
 cp routes.php "$DIR/routes/web.php"
-chmod ugo+rwX "$DIR/storage/" -R
 
 composer update --no-interaction --working-dir="$DIR"
-

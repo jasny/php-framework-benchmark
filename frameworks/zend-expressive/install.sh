@@ -23,4 +23,3 @@ cp routes.php "$DIR/config/"
 cp HelloHandler.php "$DIR/src/App/Handler/"
 
 composer update --no-interaction --working-dir="$DIR"
-

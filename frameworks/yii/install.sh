@@ -15,6 +15,6 @@ composer create-project --no-interaction --prefer-dist --no-dev yiisoft/yii2-app
 cp HelloController.php "$DIR/controllers/"
 cp .htaccess "$DIR/web/"
 
-composer update --no-interaction --working-dir="$DIR"
-composer dump-autoload --no-interaction --optimize --classmap-authoritative --no-dev --working-dir="$DIR"
+sed -is 's~defined~//~g' "$DIR/web/index.php"
 
+composer update --no-interaction --working-dir="$DIR"

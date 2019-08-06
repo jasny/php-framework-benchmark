@@ -11,3 +11,7 @@ COPY libs/setdocroot.sh /usr/local/bin/setdocroot
 COPY libs/composer.phar /usr/local/bin/composer
 RUN chmod +x /usr/local/bin/setdocroot /usr/local/bin/composer
 
+RUN apt-get update -y \
+    && apt-get install -y git unzip libzip-dev \
+    && docker-php-ext-configure zip && docker-php-ext-install zip
+
